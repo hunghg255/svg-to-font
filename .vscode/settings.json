@@ -1,0 +1,8 @@
+{
+  "editor.tabSize": 2,
+  "editor.rulers": [100],
+  "editor.formatOnSave": true,
+  "editor.quickSuggestions": {
+    "strings": true
+  }
+}
