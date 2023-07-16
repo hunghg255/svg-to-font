@@ -1,7 +1,7 @@
 {
-  "name": "svg-to-font",
-  "version": "0.0.0",
-  "description": "",
+  "name": "csvg-to-font",
+  "version": "0.0.1",
+  "description": "Convert svg to font",
   "source": "src/index.ts",
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
@@ -15,7 +15,6 @@
   "scripts": {
     "build": "unbuild",
     "stub": "unbuild --stub",
-    "test:cli": "node ./dist/cli.mjs -w -p 1234",
     "release": "changeset publish",
     "lint": "tsc"
   },
@@ -57,13 +56,13 @@
       "limit": "3 KB"
     }
   ],
-  "homepage": "https://github.com/hunghg255/hunghg255",
+  "homepage": "https://github.com/hunghg255/svg-to-font",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hunghg255/hunghg255"
+    "url": "https://github.com/hunghg255/svg-to-font"
   },
   "bugs": {
-    "url": "https://github.com/hunghg255/hunghg255/issues"
+    "url": "https://github.com/hunghg255/svg-to-font/issues"
   },
   "dependencies": {
     "@types/cheerio": "~0.22.31",
@@ -77,6 +76,7 @@
     "auto-config-loader": "^1.7.4",
     "cheerio": "~1.0.0-rc.12",
     "colors-cli": "~1.0.28",
+    "commander": "^11.0.0",
     "consola": "^3.2.3",
     "copy-template-dir": "~1.4.0",
     "cpy-cli": "^5.0.0",
@@ -84,8 +84,7 @@
     "ejs": "~3.1.6",
     "fs-extra": "~11.1.0",
     "globby": "^13.2.2",
-    "image2uri": "~1.0.5",
-    "json-ts": "^1.6.4",
+    "jiti": "^1.18.2",
     "move-file": "~2.1.0",
     "svg2ttf": "~6.0.3",
     "svgicons2svgfont": "~12.0.0",
@@ -93,10 +92,7 @@
     "ttf2eot": "~3.1.0",
     "ttf2woff": "~3.0.0",
     "ttf2woff2": "~5.0.0",
-    "yargs": "~17.7.1",
-    "chokidar": "^3.5.3",
-    "commander": "^10.0.1",
-    "jiti": "^1.18.2",
-    "unbuild": "^1.2.1"
+    "unbuild": "^1.2.1",
+    "yargs": "~17.7.1"
   }
 }

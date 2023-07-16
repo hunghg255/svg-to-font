@@ -1,11 +1,8 @@
-import { svg2Font } from '../../dist/index.mjs';
-import path from 'path';
+import { defineConfig } from '../dist/index.mjs';
 
-const rootPath = path.resolve(process.cwd(), 'test', 'example');
-
-svg2Font({
-  src: path.resolve(rootPath, 'svg'), // svg path
-  dist: path.resolve(rootPath, 'dist'), // output path
+export default defineConfig({
+  src: './test/svg', // svg path
+  dist: './test/dist', // output path
   // emptyDist: true, // Clear output directory contents
   fontName: 'svgtofont', // font name
   css: true, // Create CSS files.
@@ -21,15 +18,6 @@ svg2Font({
   website: {
     index: 'font-class',
     title: 'svgtofont',
-    favicon: path.resolve(rootPath, 'favicon.png'),
-    // Must be a .svg format image.
-    logo: path.resolve(rootPath, 'svg', 'git.svg'),
-    // version: pkg.version,
-    meta: {
-      description: 'Converts SVG fonts to TTF/EOT/WOFF/WOFF2/SVG format.',
-      keywords: 'svgtofont,TTF,EOT,WOFF,WOFF2,SVG',
-    },
-    description: ``,
     links: [
       {
         title: 'GitHub',
@@ -42,6 +30,4 @@ svg2Font({
     ],
     footerInfo: `Licensed under MIT. (Yes it's free and <a target="_blank" href="https://github.com/hunghg255/svg-to-font">open-sourced</a>)`,
   },
-}).then(() => {
-  console.log('Example::::done!');
 });

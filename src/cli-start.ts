@@ -1,11 +1,7 @@
 import path from 'node:path';
 import jiti from 'jiti';
 import * as commander from 'commander';
-import http from 'http';
-import fs from 'node:fs';
-import * as globby from 'globby';
-import * as chokidar from 'chokidar';
-import { json2ts } from 'json-ts';
+import { svg2Font } from './index';
 
 function tryRequire(id: string, rootDir: string = process.cwd()) {
   const _require = jiti(rootDir, { interopDefault: true, esmResolve: true });
@@ -36,23 +32,13 @@ const colorConsoleText = (text: string, color: keyof typeof COLORS) => {
   return console.log(coloredText);
 };
 
-function capitalizeFirstLetter(string: string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
-const DEFAULT_FILE_NAME = 'i18n-typesafe';
+const DEFAULT_FILE_NAME = 'svgtofont';
 
 export async function startCli(cwd = process.cwd(), argv = process.argv) {
   try {
-    commander.program
-      .option('-p, --port <number>', 'port to listen on', parseInt)
-      .option('-w, --watch', 'watch for changes and reload')
-      .option('-c, --config <file_name>', 'File name config')
-      .parse(argv);
+    commander.program.option('-c, --config <file_name>', 'File name config').parse(argv);
     const options = commander.program.opts();
 
-    const PORT = options.port || 4321;
-    const server = http.createServer();
     const FILE_NAME_CONFIG = options.config ?? DEFAULT_FILE_NAME;
 
     const configDir = path.resolve(cwd, FILE_NAME_CONFIG);
@@ -63,86 +49,9 @@ export async function startCli(cwd = process.cwd(), argv = process.argv) {
       throw new Error('Not Found Config');
     }
 
-    const { input: configInput, output: configOutput, library } = defineConfig();
+    const optionsConfig = defineConfig();
 
-    const input = configInput || './srcTest';
-
-    const saveData = (file: any) => {
-      fs.readFile(path.resolve(cwd, file), 'utf8', (err, data) => {
-        if (err) {
-          throw err;
-        }
-
-        let fileName = file.split('/');
-        fileName = fileName[fileName.length - 1];
-        fileName = fileName.split('.')[0];
-
-        fs.writeFile(
-          path.resolve(process.cwd(), `${configOutput}/${fileName}.d.ts`),
-          `export ${json2ts(data, { rootName: `${fileName}` })}`,
-          function (err) {
-            if (err) {
-              return console.log(err);
-            }
-            colorConsoleText('The file was saved!', 'green');
-          },
-        );
-      });
-    };
-
-    const handleFiles = (files: any) => {
-      const pathArr = files.map((file: string) => {
-        let fileName: any = file.split('/');
-        fileName = fileName[fileName.length - 1];
-        fileName = fileName.split('.')[0];
-
-        return fileName;
-      });
-
-      const interfaceNames = files.map((file: string) => {
-        let fileName: any = file.split('/');
-        fileName = fileName[fileName.length - 1];
-        fileName = fileName.split('.')[0];
-
-        return `I${capitalizeFirstLetter(fileName)}`;
-      });
-
-      // fs.writeFile(
-      //   path.resolve(process.cwd(), `${configOutput}/index.ts`),
-      //   templates({ paths: pathArr, interfaceNames, library }),
-      //   function (err) {
-      //     if (err) {
-      //       return console.log(err);
-      //     }
-      //     colorConsoleText('The file was saved!', 'green');
-      //   }
-      // );
-
-      for (let i = 0; i < files.length; i++) {
-        saveData(files[i]);
-      }
-    };
-
-    const initial = () => {
-      if (typeof input === 'string') {
-        const files = globby.globbySync(input);
-        handleFiles(files);
-      }
-    };
-
-    const watchFiles = () => {
-      chokidar.watch(configInput).on('change', initial);
-    };
-
-    if (options.watch) {
-      server.listen(PORT, () => {
-        initial();
-        watchFiles();
-        colorConsoleText(`🚀 i18n typesafe is running at port ${PORT}`, 'yellow');
-      });
-    } else {
-      initial();
-    }
+    svg2Font(optionsConfig);
   } catch (error: any) {
     colorConsoleText('❌ i18n typesafe Error: ' + error.message, 'red');
   }

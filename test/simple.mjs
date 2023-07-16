@@ -1,7 +1,7 @@
-import { svg2Font } from '../../dist/index.mjs';
+import { svg2Font } from '../dist/index.mjs';
 import path from 'path';
 
-const rootPath = path.resolve(process.cwd(), 'test', 'example');
+const rootPath = path.resolve(process.cwd(), 'test');
 
 svg2Font({
   src: path.resolve(rootPath, 'svg'), // svg path
