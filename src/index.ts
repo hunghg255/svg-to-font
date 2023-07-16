@@ -40,7 +40,7 @@ export type SvgToFontOptions = {
    * path.join(process.cwd(), 'fonts')
    * ```
    */
-  dist?: string;
+  dist: string;
   /**
    * svg path
    * @default svg
@@ -49,7 +49,7 @@ export type SvgToFontOptions = {
    * path.join(process.cwd(), 'svg')
    * ```
    */
-  src?: string;
+  src: string;
   /**
    * The font family name you want.
    * @default iconfont
@@ -223,11 +223,11 @@ export const defineConfig = (options: SvgToFontOptions) => (): SvgToFontOptions 
   return options;
 };
 
-export const svg2Font = async (options: SvgToFontOptions = {}) => {
+export const svg2Font = async (options: SvgToFontOptions) => {
   const defaultOptions: SvgToFontOptions = merge(
     {
-      dist: path.resolve(process.cwd(), 'dist'),
-      src: path.resolve(process.cwd(), 'svg'),
+      dist: path.resolve(process.cwd(), options.dist),
+      src: path.resolve(process.cwd(), options.src),
       startUnicode: 0xea_01,
       svg2ttf: {},
       svgicons2svgfont: {

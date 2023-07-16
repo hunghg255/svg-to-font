@@ -10,7 +10,7 @@ import { filterSvgFiles, toPascalCase } from './utils';
  * Generate Icon SVG Path Source
  * <font-name>.json
  */
-export async function generateIconsSource(options: SvgToFontOptions = {}) {
+export async function generateIconsSource(options: SvgToFontOptions) {
   const ICONS_PATH = filterSvgFiles(options.src as any);
   const data = await buildPathsObject(ICONS_PATH, options);
   const outPath = path.join(options.dist as any, `${options.fontName}.json`);
@@ -23,7 +23,7 @@ export async function generateIconsSource(options: SvgToFontOptions = {}) {
  * and constructs map of icon name to array of path strings.
  * @param {array} files
  */
-async function buildPathsObject(files: string[], options: SvgToFontOptions = {}) {
+async function buildPathsObject(files: string[], options: SvgToFontOptions) {
   const svgoOptions = options.svgoOptions || {};
   return Promise.all(
     files.map(async (filepath) => {
@@ -63,7 +63,7 @@ export declare const ${name}: (props: React.SVGProps<SVGSVGElement>) => JSX.Elem
  * Generate React Icon
  * <font-name>.json
  */
-export async function generateReactIcons(options: SvgToFontOptions = {}) {
+export async function generateReactIcons(options: SvgToFontOptions) {
   const ICONS_PATH = filterSvgFiles(options.src as any);
   const data = await outputReactFile(ICONS_PATH, options);
   const outPath = path.join(options.dist as any, 'react', 'index.js');
@@ -72,7 +72,7 @@ export async function generateReactIcons(options: SvgToFontOptions = {}) {
   return outPath;
 }
 
-async function outputReactFile(files: string[], options: SvgToFontOptions = {}) {
+async function outputReactFile(files: string[], options: SvgToFontOptions) {
   const svgoOptions = options.svgoOptions || {};
   const fontSize =
     options.css && typeof options.css !== 'boolean' && options.css.fontSize

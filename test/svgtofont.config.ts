@@ -1,8 +1,8 @@
 import { defineConfig } from '../dist/index.mjs';
 
 export default defineConfig({
-  src: './test/svg', // svg path
-  dist: './test/dist', // output path
+  src: 'svg', // svg path
+  dist: 'dist', // output path
   // emptyDist: true, // Clear output directory contents
   fontName: 'svgtofont', // font name
   css: true, // Create CSS files.

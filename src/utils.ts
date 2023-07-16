@@ -26,7 +26,7 @@ let startUnicode = 0xea_01;
 /**
  * SVG to SVG font
  */
-export function createSVG(options: SvgToFontOptions = {}): Promise<Record<string, string>> {
+export function createSVG(options: SvgToFontOptions): Promise<Record<string, string>> {
   startUnicode = options.startUnicode as number;
   UnicodeObj = {};
   return new Promise((resolve, reject) => {
@@ -183,7 +183,7 @@ export async function createTypescript(
 /**
  * SVG font to TTF
  */
-export function createTTF(options: SvgToFontOptions = {}): Promise<Buffer> {
+export function createTTF(options: SvgToFontOptions): Promise<Buffer> {
   return new Promise((resolve, reject) => {
     options.svg2ttf = options.svg2ttf || {};
     const DIST_PATH = path.join(options.dist as any, options.fontName + '.ttf');
@@ -210,7 +210,7 @@ export function createTTF(options: SvgToFontOptions = {}): Promise<Buffer> {
 /**
  * TTF font to EOT
  */
-export function createEOT(options: SvgToFontOptions = {}, ttf: Buffer) {
+export function createEOT(options: SvgToFontOptions, ttf: Buffer) {
   return new Promise((resolve, reject) => {
     const DIST_PATH = path.join(options.dist as any, options.fontName + '.eot');
     const eot = Buffer.from(ttf2eot(ttf).buffer);
@@ -233,7 +233,7 @@ export function createEOT(options: SvgToFontOptions = {}, ttf: Buffer) {
 /**
  * TTF font to WOFF
  */
-export function createWOFF(options: SvgToFontOptions = {}, ttf: Buffer) {
+export function createWOFF(options: SvgToFontOptions, ttf: Buffer) {
   return new Promise((resolve, reject) => {
     const DIST_PATH = path.join(options.dist as any, options.fontName + '.woff');
     const woff = Buffer.from(ttf2woff(ttf).buffer);
@@ -254,7 +254,7 @@ export function createWOFF(options: SvgToFontOptions = {}, ttf: Buffer) {
 /**
  * TTF font to WOFF2
  */
-export function createWOFF2(options: SvgToFontOptions = {}, ttf: Buffer) {
+export function createWOFF2(options: SvgToFontOptions, ttf: Buffer) {
   return new Promise((resolve, reject) => {
     const DIST_PATH = path.join(options.dist as any, options.fontName + '.woff2');
     const woff2 = Buffer.from(ttf2woff2(ttf).buffer);
@@ -277,7 +277,7 @@ export function createWOFF2(options: SvgToFontOptions = {}, ttf: Buffer) {
 /**
  * Create SVG Symbol
  */
-export function createSvgSymbol(options: SvgToFontOptions = {}) {
+export function createSvgSymbol(options: SvgToFontOptions) {
   const DIST_PATH = path.join(options.dist as any, `${options.fontName}.symbol.svg`);
   const $ = cheerio.load(
     '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="0" height="0" style="display:none;"></svg>',
