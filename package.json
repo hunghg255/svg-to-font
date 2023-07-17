@@ -1,6 +1,6 @@
 {
   "name": "csvg-to-font",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Convert svg to font",
   "source": "src/index.ts",
   "main": "./dist/index.mjs",
@@ -18,7 +18,11 @@
     "release": "changeset publish",
     "lint": "tsc"
   },
-  "keywords": [],
+  "keywords": [
+    "svg",
+    "font",
+    "convert svg to font"
+  ],
   "author": "hunghg255",
   "license": "MIT",
   "devDependencies": {
@@ -36,7 +40,7 @@
     "typescript": "^4.8.4"
   },
   "bin": {
-    "svg-to-font": "./bin/svg-to-font.mjs"
+    "csvg-to-font": "./bin/svg-to-font.mjs"
   },
   "files": [
     "bin",

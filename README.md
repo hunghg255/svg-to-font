@@ -3,6 +3,12 @@
 [![npm version](https://badge.fury.io/js/csvg-to-font.svg)](https://badge.fury.io/js/csvg-to-font) [![npm](https://img.shields.io/npm/dw/csvg-to-font.svg?logo=npm)](https://www.npmjs.com/package/csvg-to-font) [![npm](https://img.shields.io/bundlephobia/minzip/csvg-to-font)](https://www.npmjs.com/package/csvg-to-font)
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 
+# Demo
+
+[Github](https://github.com/hunghg255/react-svg-to-font)
+
+[Demo](https://react-svg-to-font.vercel.app/)
+
 ## Install
 
 ```bash
@@ -38,7 +44,7 @@ export default defineConfig({
   ...
   "scripts": {
     ...
-    "svg-2-font": "svg-2-font",
+    "svg-2-font": "csvg-to-font",
   },
   ...
 }
@@ -57,7 +63,7 @@ Exp: awesome.config.ts;
   ...
   "scripts": {
     ...
-    "svg-2-font": "svg-2-font -c awesome",
+    "svg-2-font": "csvg-to-font -c awesome",
   },
   ...
 }
