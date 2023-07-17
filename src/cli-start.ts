@@ -70,6 +70,6 @@ export async function startCli(cwd = process.cwd(), argv = process.argv) {
       startNumber: 20000,
     });
   } catch (error: any) {
-    colorConsoleText('❌ i18n typesafe Error: ' + error.message, 'red');
+    colorConsoleText('❌ csvg-to-svg Error: ' + error.message, 'red');
   }
 }
