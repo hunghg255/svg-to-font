@@ -37,7 +37,6 @@ export type SvgToFontOptions = {
    * @default fonts
    * @example
    * ```
-   * path.join(process.cwd(), 'fonts')
    * ```
    */
   dist: string;
@@ -46,7 +45,6 @@ export type SvgToFontOptions = {
    * @default svg
    * @example
    * ```
-   * path.join(process.cwd(), 'svg')
    * ```
    */
   src: string;
@@ -138,28 +136,6 @@ export type SvgToFontOptions = {
   svg2ttf?: unknown;
   website?: {
     /**
-     * Add a Github corner to your website
-     * @like https://github.com/uiwjs/react-github-corners
-     */
-    corners?: {
-      /**
-       * @example `https://github.com/jaywcjlove/svgtofont`
-       */
-      url?: string;
-      /**
-       * @default 60
-       */
-      width?: number;
-      /**
-       * @default 60
-       */
-      height?: number;
-      /**
-       * @default #151513
-       */
-      bgColor?: '#dc3545';
-    };
-    /**
      * @default unicode
      */
     index?: 'font-class' | 'unicode' | 'symbol';
@@ -167,26 +143,6 @@ export type SvgToFontOptions = {
      * website title
      */
     title?: string;
-    /**
-     * @example
-     * ```js
-     * path.resolve(rootPath, "favicon.png")
-     * ```
-     */
-    favicon?: string;
-    /**
-     * Must be a .svg format image.
-     * @example
-     * ```js
-     * path.resolve(rootPath, "svg", "git.svg")
-     * ```
-     */
-    logo?: string;
-    version?: string;
-    meta?: {
-      description?: string;
-      keywords?: string;
-    };
     description?: string;
     template?: string;
     footerInfo?: string;
@@ -202,6 +158,16 @@ export type SvgToFontOptions = {
    */
   typescript?: boolean | TypescriptOptions;
 };
+
+interface IDefineConfig {
+  src: string;
+  dist: string;
+  fontName: string;
+  css: boolean;
+  outSVGReact?: boolean;
+  outSVGPath?: boolean;
+  typescript?: boolean;
+}
 
 declare global {
   const options: any;
@@ -219,7 +185,7 @@ export type IconInfo = {
 };
 export type InfoData = Record<string, Partial<IconInfo>>;
 
-export const defineConfig = (options: SvgToFontOptions) => (): SvgToFontOptions => {
+export const defineConfig = (options: IDefineConfig) => (): IDefineConfig => {
   return options;
 };
 
@@ -414,7 +380,6 @@ export const svg2Font = async (options: SvgToFontOptions) => {
       if (!fs.existsSync(fontClassPath)) {
         fs.createFileSync(fontClassPath);
       }
-      console.log('tempData', tempData.template);
 
       const classHtmlStr = await createHTML(tempData.template as string, tempData);
 

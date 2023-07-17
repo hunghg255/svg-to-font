@@ -51,7 +51,24 @@ export async function startCli(cwd = process.cwd(), argv = process.argv) {
 
     const optionsConfig = defineConfig();
 
-    svg2Font(optionsConfig);
+    svg2Font({
+      ...optionsConfig,
+      website: {
+        index: 'font-class',
+        title: optionsConfig?.fontName || 'svgtofont',
+        links: [
+          {
+            title: 'GitHub',
+            url: 'https://github.com/hunghg255/svg-to-font',
+          },
+        ],
+      },
+      svgicons2svgfont: {
+        fontHeight: 1000,
+        normalize: true,
+      },
+      startNumber: 20000,
+    });
   } catch (error: any) {
     colorConsoleText('❌ i18n typesafe Error: ' + error.message, 'red');
   }

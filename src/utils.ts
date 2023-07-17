@@ -2,11 +2,8 @@ import path from 'node:path';
 
 import cheerio from 'cheerio';
 import color from 'colors-cli';
-import copy from 'copy-template-dir';
-import del from 'del';
 import ejs from 'ejs';
 import fs, { ReadStream } from 'fs-extra';
-import moveFile from 'move-file';
 import svg2ttf from 'svg2ttf';
 import SVGIcons2SVGFont from 'svgicons2svgfont';
 import ttf2eot from 'ttf2eot';
