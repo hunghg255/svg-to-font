@@ -17,7 +17,7 @@ npm i csvg-to-font@latest --save-dev
 
 ## Setup
 
-### Create file: `svgtofont.config.ts` or `svgtofont.config.mjs` or `svgtofont.config.js`
+### Create file: `svgtofont.config.{ts,js,mjs}`
 
 ```js
 import { defineConfig } from 'csvg-to-font';
@@ -52,7 +52,7 @@ export default defineConfig({
 
 ### Custom config file
 
-- You can also use a custom config file instead of `svgtofont.config.ts`. Just create `<FILE_NAME>.config.ts` to build command
+- You can also use a custom config file instead of `svgtofont.config.{ts,js,mjs}`. Just create `<FILE_NAME>.config.{ts,js,mjs}` to build command
 
 ```js
 Exp: awesome.config.ts;
