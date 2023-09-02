@@ -185,7 +185,7 @@ export type IconInfo = {
 };
 export type InfoData = Record<string, Partial<IconInfo>>;
 
-export const defineConfig = (options: IDefineConfig) => (): IDefineConfig => {
+export const defineConfig = (options: IDefineConfig) => {
   return options;
 };
 

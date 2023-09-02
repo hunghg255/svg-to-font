@@ -1,19 +1,6 @@
-import path from 'node:path';
-import jiti from 'jiti';
 import * as commander from 'commander';
 import { svg2Font } from './index';
-
-function tryRequire(id: string, rootDir: string = process.cwd()) {
-  const _require = jiti(rootDir, { interopDefault: true, esmResolve: true });
-  try {
-    return _require(id);
-  } catch (error: any) {
-    if (error.code !== 'MODULE_NOT_FOUND') {
-      console.error(`Error trying import ${id} from ${rootDir}`, error);
-    }
-    return {};
-  }
-}
+import { readConfig } from 'unreadconfig';
 
 const COLORS = {
   black: '\x1b[30m',
@@ -41,15 +28,13 @@ export async function startCli(cwd = process.cwd(), argv = process.argv) {
 
     const FILE_NAME_CONFIG = options.config ?? DEFAULT_FILE_NAME;
 
-    const configDir = path.resolve(cwd, FILE_NAME_CONFIG);
+    const optionsConfig = readConfig(FILE_NAME_CONFIG, {
+      cwd,
+    });
 
-    const defineConfig = tryRequire(`./${FILE_NAME_CONFIG}.config`, configDir) || {};
-
-    if (JSON.stringify(defineConfig) === '{}') {
+    if (JSON.stringify(optionsConfig) === '{}') {
       throw new Error('Not Found Config');
     }
-
-    const optionsConfig = defineConfig();
 
     svg2Font({
       ...optionsConfig,
