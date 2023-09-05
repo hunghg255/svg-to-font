@@ -28,9 +28,7 @@ export async function startCli(cwd = process.cwd(), argv = process.argv) {
 
     const FILE_NAME_CONFIG = options.config ?? DEFAULT_FILE_NAME;
 
-    const optionsConfig = readConfig(FILE_NAME_CONFIG, {
-      cwd,
-    });
+    const optionsConfig = readConfig(FILE_NAME_CONFIG);
 
     if (JSON.stringify(optionsConfig) === '{}') {
       throw new Error('Not Found Config');
