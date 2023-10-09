@@ -1,6 +1,6 @@
 {
   "name": "csvg-to-font",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "Convert svg to font",
   "source": "src/index.ts",
   "main": "./dist/index.mjs",
@@ -46,20 +46,6 @@
     "bin",
     "dist"
   ],
-  "size-limit": [
-    {
-      "path": "dist/index.module.js",
-      "name": "a",
-      "import": "{ a }",
-      "limit": "3 KB"
-    },
-    {
-      "path": "dist/index.module.js",
-      "name": "b",
-      "import": "{ b }",
-      "limit": "3 KB"
-    }
-  ],
   "homepage": "https://github.com/hunghg255/svg-to-font",
   "repository": {
     "type": "git",
@@ -77,7 +63,6 @@
     "@types/ttf2eot": "~2.0.0",
     "@types/ttf2woff": "~2.0.2",
     "@types/ttf2woff2": "~2.0.0",
-    "auto-config-loader": "^1.7.4",
     "cheerio": "~1.0.0-rc.12",
     "colors-cli": "~1.0.28",
     "commander": "^11.0.0",
@@ -92,7 +77,6 @@
     "ttf2woff": "~3.0.0",
     "ttf2woff2": "~5.0.0",
     "unbuild": "^1.2.1",
-    "unreadconfig": "^0.0.12",
-    "yargs": "~17.7.1"
+    "unreadconfig": "^0.0.12"
   }
 }

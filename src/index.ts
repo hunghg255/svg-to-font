@@ -2,7 +2,6 @@
 
 import path from 'node:path';
 
-import { autoConf, merge, AutoConfOption } from 'auto-config-loader';
 import color from 'colors-cli';
 import fs from 'fs-extra';
 import { SvgIcons2FontOptions } from 'svgicons2svgfont';
@@ -24,10 +23,11 @@ import {
   TypescriptOptions,
 } from './utils';
 import { stylesTemplate } from './templates/styles';
+import { readConfig } from 'unreadconfig';
 
 export type SvgToFontOptions = {
   /** Support for .svgtofontrc and more configuration files. */
-  config?: AutoConfOption<SvgToFontOptions>;
+  // config?: AutoConfOption<SvgToFontOptions>;
   /** A value of `false` disables logging */
   log?: boolean;
   /** log callback function  */
@@ -190,7 +190,8 @@ export const defineConfig = (options: IDefineConfig) => {
 };
 
 export const svg2Font = async (options: SvgToFontOptions) => {
-  const defaultOptions: SvgToFontOptions = merge(
+  const defaultOptions: SvgToFontOptions = Object.assign(
+    {},
     {
       dist: path.resolve(process.cwd(), options.dist),
       src: path.resolve(process.cwd(), options.src),
@@ -204,13 +205,12 @@ export const svg2Font = async (options: SvgToFontOptions) => {
     },
     options,
   );
-  const data = autoConf<SvgToFontOptions>('svgtofont', {
+  const data = readConfig('svgtofont', {
     mustExist: true,
     default: defaultOptions,
-    ...options.config,
   });
 
-  options = merge(defaultOptions, data);
+  options = Object.assign({}, defaultOptions, data);
 
   if (options.log === undefined) {
     options.log = true;
