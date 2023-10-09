@@ -1,6 +1,6 @@
 {
   "name": "csvg-to-font",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "Convert svg to font",
   "source": "src/index.ts",
   "main": "./dist/index.mjs",
