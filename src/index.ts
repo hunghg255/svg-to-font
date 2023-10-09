@@ -287,7 +287,7 @@ export const svg2Font = async (options: SvgToFontOptions) => {
       infoData[name].className = symbolName;
       infoData[name].unicode = `&#${encodedCodes};`;
       cssIconHtml.push(
-        `<li class="class-icon"><i class="${iconPart}</i><p class="name">${name}</p></li>`,
+        `<li class="class-icon"><i class="${iconPart}</i><p class="name">${iconPart}</p></li>`,
       );
       unicodeHtml.push(
         `<li class="unicode-icon"><span class="iconfont">${_code}</span><h4>${name}</h4><span class="unicode">&amp;#${encodedCodes};</span></li>`,
