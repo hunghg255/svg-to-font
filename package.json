@@ -1,15 +1,18 @@
 {
   "name": "csvg-to-font",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "description": "Convert svg to font",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "require": "./dist/index.cjs",
+    "import": {
+      "types": "./dist/index.d.mts",
       "import": "./dist/index.mjs"
+    },
+    "require": {
+      "types": "./dist/index.d.cts",
+      "import": "./dist/index.cjs"
     }
   },
   "scripts": {
@@ -27,17 +30,18 @@
   "license": "MIT",
   "devDependencies": {
     "@hunghg255/eslint-config-ts": "^0.0.2",
-    "@size-limit/preset-small-lib": "^8.2.4",
-    "@types/svg2ttf": "^5.0.1",
-    "@types/svgicons2svgfont": "^10.0.1",
-    "@types/ttf2eot": "^2.0.0",
-    "@types/ttf2woff": "^2.0.2",
-    "@types/ttf2woff2": "^2.0.0",
-    "del-cli": "^5.0.0",
-    "eslint": "^8.41.0",
+    "@size-limit/preset-small-lib": "^8.2.6",
+    "@types/svg2ttf": "^5.0.3",
+    "@types/svgicons2svgfont": "^10.0.5",
+    "@types/ttf2eot": "^2.0.2",
+    "@types/ttf2woff": "^2.0.4",
+    "@types/ttf2woff2": "^2.0.2",
+    "del-cli": "^5.1.0",
+    "eslint": "^8.56.0",
     "prettier": "^2.8.8",
-    "size-limit": "^8.2.4",
-    "typescript": "^4.8.4"
+    "size-limit": "^8.2.6",
+    "typescript": "^5.3.3",
+    "unbuild": "^2.0.0"
   },
   "bin": {
     "csvg-to-font": "./bin/svg-to-font.mjs"
@@ -55,28 +59,27 @@
     "url": "https://github.com/hunghg255/svg-to-font/issues"
   },
   "dependencies": {
-    "@types/cheerio": "~0.22.31",
-    "@types/ejs": "~3.1.0",
-    "@types/fs-extra": "^11.0.1",
-    "@types/svg2ttf": "~5.0.1",
-    "@types/svgicons2svgfont": "~10.0.1",
-    "@types/ttf2eot": "~2.0.0",
-    "@types/ttf2woff": "~2.0.2",
-    "@types/ttf2woff2": "~2.0.0",
+    "@types/cheerio": "~0.22.35",
+    "@types/ejs": "~3.1.5",
+    "@types/fs-extra": "^11.0.4",
+    "@types/svg2ttf": "~5.0.3",
+    "@types/svgicons2svgfont": "~10.0.5",
+    "@types/ttf2eot": "~2.0.2",
+    "@types/ttf2woff": "~2.0.4",
+    "@types/ttf2woff2": "~2.0.2",
     "cheerio": "~1.0.0-rc.12",
-    "colors-cli": "~1.0.28",
-    "commander": "^11.0.0",
+    "colors-cli": "~1.0.33",
+    "commander": "^11.1.0",
     "consola": "^3.2.3",
-    "ejs": "~3.1.6",
-    "fs-extra": "~11.1.0",
+    "ejs": "~3.1.9",
+    "fs-extra": "~11.1.1",
     "globby": "^13.2.2",
     "svg2ttf": "~6.0.3",
     "svgicons2svgfont": "~12.0.0",
-    "svgo": "~3.0.0",
+    "svgo": "~3.0.5",
     "ttf2eot": "~3.1.0",
     "ttf2woff": "~3.0.0",
     "ttf2woff2": "~5.0.0",
-    "unbuild": "^1.2.1",
     "unreadconfig": "^0.0.12"
   }
 }
