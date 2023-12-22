@@ -9,7 +9,7 @@ import { Config } from 'svgo';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
-import { generateIconsSource, generateReactIcons } from './generate';
+import { generateIconsSource, generateReactIcons, generateReactNativeIcons } from './generate';
 import { log } from './log';
 import {
   createSVG,
@@ -71,6 +71,10 @@ export type SvgToFontOptions = {
    *   "stylelint": ["M129.74 243.648c28-100.5.816c2.65..."]
    * }
    * ```
+   */
+  outSVGReactNative?: boolean;
+  /**
+   * Output `./dist/reactNative/`, SVG generates `reactNative` component.
    */
   outSVGPath?: boolean;
   /**
@@ -165,6 +169,7 @@ interface IDefineConfig {
   fontName: string;
   css: boolean;
   outSVGReact?: boolean;
+  outSVGReactNative?: boolean;
   outSVGPath?: boolean;
   typescript?: boolean;
 }
@@ -394,6 +399,10 @@ export const svg2Font = async (options: SvgToFontOptions) => {
     if (options.outSVGReact) {
       const outPath = await generateReactIcons(options);
       log.log(`${color.green('SUCCESS')} Created React Components. `);
+    }
+    if (options.outSVGReactNative) {
+      generateReactNativeIcons(options, unicodeObject);
+      log.log(`${color.green('SUCCESS')} Created React Native Components. `);
     }
   } catch (error) {
     log.log('SvgToFont:CLI:ERR:', error);
